@@ -9,7 +9,7 @@ export default function AuthGuard({ children }: { children: React.ReactNode }) {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (!session) router.push('/login');
     });
-  }, []);
+  }, [router]);
 
   return <>{children}</>;
 }

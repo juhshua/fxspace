@@ -16,12 +16,14 @@ export default function Login() {
     setError('');
 
     try {
-      const { data, error } = await supabase.auth.signInWithPassword({
+      // In your handleLogin function:
+      const { error: authError } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
-      if (error) throw error;
+      if (authError) throw authError;
+
       
       // Redirect to dashboard after successful login
       router.push('/dashboard');
@@ -127,7 +129,7 @@ export default function Login() {
         </form>
 
         <div className="text-sm text-center text-gray-600">
-          Don't have an account?{' '}
+          Don&apos;t have an account?{' '}
           <Link href="/signup" className="font-medium text-blue-600 hover:text-blue-500">
             Sign up
           </Link>
